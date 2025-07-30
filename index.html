@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estúdio Traço Fino - Arte que transforma</title>
+    
+    <!-- Importação de Fontes do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS Embutidos -->
+    <style>
+        :root {
+            --cor-primaria: #B87333; /* Terracota */
+            --cor-texto: #333333;
+            --cor-fundo: #fdfaf7;
+            --cor-fundo-secao: #f4f0ed;
+            --cor-branca: #ffffff;
+            --fonte-titulo: 'Playfair Display', serif;
+            --fonte-corpo: 'Montserrat', sans-serif;
+        }
+
+        /* Reset Básico e Estilos Gerais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--fonte-corpo);
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--fonte-titulo);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--cor-primaria);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #a0652d;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        /* Cabeçalho */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: var(--cor-branca);
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--fonte-titulo);
+            font-weight: 700;
+            font-size: 1.8em;
+            color: var(--cor-texto);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav li {
+            margin: 0 20px;
+        }
+
+        .main-nav a {
+            color: var(--cor-texto);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--cor-primaria);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons svg {
+            width: 24px;
+            height: 24px;
+            margin-left: 20px;
+            cursor: pointer;
+            stroke: var(--cor-texto);
+            transition: stroke 0.3s ease;
+        }
+
+        .header-icons svg:hover {
+            stroke: var(--cor-primaria);
+        }
+        
+        .menu-toggle {
+            display: none; /* Escondido em telas grandes */
+            cursor: pointer;
+        }
+        
+        .menu-toggle svg {
+             width: 30px;
+             height: 30px;
+        }
+
+        /* Seção Hero */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 85vh;
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1534349762230-e011d7131f44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: var(--cor-branca);
+            padding: 0 20px;
+        }
+
+        .hero-text-content {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .hero-text-content h1 {
+            font-size: 4em;
+            margin-bottom: 0.3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-text-content p {
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branca);
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background-color: #a0652d;
+        }
+
+        /* Seção Mais Vendidos */
+        .bestsellers-section {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            bottom: -10px;
+            left: 20%;
+            background-color: var(--cor-primaria);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background-color: var(--cor-branca);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-family: var(--fonte-corpo);
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--cor-branca);
+            color: var(--cor-primaria);
+            border: 2px solid var(--cor-primaria);
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branca);
+        }
+
+        /* Seção Sobre a Artista */
+        .about-artist-section {
+            background-color: var(--cor-fundo-secao);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image img {
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about-text h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .cta-button-secondary {
+            background-color: transparent;
+            color: var(--cor-primaria);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid var(--cor-primaria);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button-secondary:hover {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branca);
+        }
+        
+        /* Seção Instagram */
+        .instagram-section {
+             text-align: center;
+        }
+        
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+        
+        .instagram-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .instagram-photo {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .instagram-photo .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(184, 115, 51, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .instagram-photo:hover img {
+            transform: scale(1.1);
+        }
+        
+        .instagram-photo:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Rodapé */
+        .main-footer {
+            background-color: #2b2b2b;
+            color: #ccc;
+            padding: 60px 0 20px 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .footer-column h4 {
+            font-family: var(--fonte-corpo);
+            font-weight: 700;
+            color: var(--cor-branca);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+        }
+        
+        .footer-column a:hover {
+            color: var(--cor-branca);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-image img {
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none; /* Esconde a navegação normal */
+            }
+            .header-icons {
+                display: none; /* Esconde os ícones */
+            }
+            .menu-toggle {
+                display: block; /* Mostra o ícone do menu */
+            }
+            
+            .hero-text-content h1 {
+                font-size: 2.5em;
+            }
+            .hero-text-content p {
+                font-size: 1.1em;
+            }
+            
+            .instagram-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+             .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-content {
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho da Página -->
+    <header class="main-header">
+        <div class="logo">Estúdio Traço Fino</div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#bestsellers">Art Prints</a></li>
+                <li><a href="#bestsellers">Papelaria</a></li>
+                <li><a href="#instagram">Novidades</a></li>
+                <li><a href="#about">Sobre</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+        </div>
+        <div class="menu-toggle">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Principal (Hero) -->
+        <section class="hero-section">
+            <div class="hero-text-content">
+                <h1>Arte que transforma sua casa em lar</h1>
+                <p>Ilustrações autorais e exclusivas para dar vida às suas paredes.</p>
+                <button class="cta-button">Ver Coleção Completa</button>
+            </div>
+        </section>
+
+        <!-- Seção Mais Vendidos -->
+        <section id="bestsellers" class="bestsellers-section container">
+            <h2 class="section-title">Os Queridinhos do Estúdio</h2>
+            <div class="product-grid">
+                <!-- Produto 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Ilustração de uma mulher lendo">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ilustração "A Leitora"</h3>
+                        <p class="product-price">R$ 70,00</p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                <!-- Produto 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1617173944883-63e58398184c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Ilustração de folha Costela-de-Adão">
+                    </div>
+                    <div class="product-info">
+                        <h3>Composição Costela-de-Adão</h3>
+                        <p class="product-price">R$ 70,00</p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                <!-- Produto 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Ilustração abstrata com formas terrosas">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ilustração "Formas Terrosas"</h3>
+                        <p class="product-price">R$ 120,00</p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                 <!-- Produto 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1516414447565-b14be0adf13e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Bloco de notas com tema botânico">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bloco de Notas Botânico</h3>
+                        <p class="product-price">R$ 35,00</p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre a Artista -->
+        <section id="about" class="about-artist-section">
+            <div class="container about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee8643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Foto da artista Camila em seu ateliê">
+                </div>
+                <div class="about-text">
+                    <h2>Cada traço conta uma história.</h2>
+                    <p>Sou Camila, a mente e o coração por trás do Estúdio Traço Fino. Minha paixão é criar arte que traga mais beleza e significado para o seu dia a dia, transformando sentimentos e cenas cotidianas em peças que decoram e inspiram.</p>
+                    <button class="cta-button-secondary">Conheça a Artista</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção Instagram -->
+        <section id="instagram" class="instagram-section container">
+             <h2 class="section-title">Siga @estudiotracofino</h2>
+             <div class="instagram-grid">
+                 <a href="#" class="instagram-photo"><div class="overlay">Ver no Insta</div><img src="https://placehold.co/300x300/f4f0ed/B87333?text=Arte+1" alt="Foto 1 do Instagram"></a>
+                 <a href="#" class="instagram-photo"><div class="overlay">Ver no Insta</div><img src="https://placehold.co/300x300/f4f0ed/B87333?text=Arte+2" alt="Foto 2 do Instagram"></a>
+                 <a href="#" class="instagram-photo"><div class="overlay">Ver no Insta</div><img src="https://placehold.co/300x300/f4f0ed/B87333?text=Arte+3" alt="Foto 3 do Instagram"></a>
+                 <a href="#" class="instagram-photo"><div class="overlay">Ver no Insta</div><img src="https://placehold.co/300x300/f4f0ed/B87333?text=Arte+4" alt="Foto 4 do Instagram"></a>
+                 <a href="#" class="instagram-photo"><div class="overlay">Ver no Insta</div><img src="https://placehold.co/300x300/f4f0ed/B87333?text=Arte+5" alt="Foto 5 do Instagram"></a>
+                 <a href="#" class="instagram-photo"><div class="overlay">Ver no Insta</div><img src="https://placehold.co/300x300/f4f0ed/B87333?text=Arte+6" alt="Foto 6 do Instagram"></a>
+             </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h4>Estúdio Traço Fino</h4>
+                <p>Arte autoral para dar vida e personalidade aos seus espaços.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="#">Dúvidas Frequentes</a></li>
+                    <li><a href="#">Prazos e Entregas</a></li>
+                    <li><a href="#">Trocas e Devoluções</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Siga-nos</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Estúdio Traço Fino. Todos os direitos reservados. Criado com base no plano de negócios.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
